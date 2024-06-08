@@ -36,11 +36,12 @@ const sendMail = async (req, res) => {
         console.log(error);
       } else {
         console.log("Email sent: " + info.response);
+        return res.json({ message: "Почта успешно отправлена!", status: 200 });
       } 
     });
   });
 
-  
+
     return res.json({ message: "Почта успешно отправлена!", status: 200 });
   } catch (e) {
     res.json({ message: "Ошибка связи!" });
