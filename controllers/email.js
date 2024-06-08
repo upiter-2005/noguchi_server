@@ -1,5 +1,7 @@
 const nodemailer = require("nodemailer");
 
+
+
 const sendMail = async (req, res) => {
   try {
     const { name, secondName, tel, email, address, delivery, order } = req.body;
@@ -7,7 +9,6 @@ const sendMail = async (req, res) => {
       port: 587, // true for 465, false for other ports
       host: "smtp.gmail.com",
       auth: {
-        
         user: "noguchi.ramen.shop@gmail.com",
         pass: "xxlq rlps agyz jrqz",
       },
@@ -21,7 +22,7 @@ const sendMail = async (req, res) => {
     })
     const mailOptions = {
       from: "Noguchi <noguchi.ramen.shop@gmail.com>",
-      to: "noguchi.ramen.shop@gmail.com, pavel470245@gmail.com",
+      to: "pavel470245@gmail.com",
       subject: "Noguchi Checkout Form request",
 
 
@@ -29,14 +30,17 @@ const sendMail = async (req, res) => {
       //text: `Mail sending`,
     };
 
-    await transporter.sendMail(mailOptions, function (error, info) {
+  await new Promise((resolve, reject) => {
+     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         console.log(error);
       } else {
         console.log("Email sent: " + info.response);
       } 
     });
+  });
 
+  
     return res.json({ message: "Почта успешно отправлена!", status: 200 });
   } catch (e) {
     res.json({ message: "Ошибка связи!" });
