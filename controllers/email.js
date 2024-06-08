@@ -22,7 +22,7 @@ const sendMail = async (req, res) => {
     })
     const mailOptions = {
       from: "Noguchi <noguchi.ramen.shop@gmail.com>",
-      to: "pavel470245@gmail.com",
+      to: "noguchi.ramen.shop@gmail.com, pavel470245@gmail.com",
       subject: "Noguchi Checkout Form request",
 
 
